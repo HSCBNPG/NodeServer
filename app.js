@@ -1,12 +1,14 @@
 // 引入express模块
 const express=require('express');
+// 引入cors模块，处理跨域
 const cors = require('cors')
 // 创建服务器
 var app=express();
 app.listen(8081);
 // 配置cors
 app.use(cors({
-	origin:["http://127.0.0.1:8080","http://localhost:8080"]
+	// origin:["http://127.0.0.1:8080","http://localhost:8080","http://127.0.0.1:5500"]
+	origin:"*"
 }))
 // 引入路由器模块
 var router=require('./routes/user.js');
@@ -16,6 +18,7 @@ var adm=require('./routes/adm.js');
 
 // 托管静态资源到html下
 app.use( express.static('./img') );
+app.use( express.static('./music') );
 // app.use( express.static('files') );
 // 引入body-parser中间件
 const bodyparser=require('body-parser');
